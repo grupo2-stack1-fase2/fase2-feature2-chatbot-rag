@@ -1,0 +1,91 @@
+
+openapi: 3.0.3
+
+info:
+  title: AQUORA Chatbot API
+  description: API del chatbot con recuperacion aumentada por generacion (RAG).
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Entorno local
+
+tags:
+  - name: Chatbot
+    description: Consultas al asistente virtual de AQUORA
+
+paths:
+  /api/v1/chat:
+    post:
+      tags:
+        - Chatbot
+      operationId: sendChatMessage
+      summary: Envia una pregunta al chatbot
+      description: Recibe una pregunta y devuelve una respuesta fundamentada en la documentacion de AQUORA.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+      responses:
+        '200':
+          description: Respuesta generada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+        '400':
+          description: La pregunta es invalida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: No fue posible procesar la consulta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    ChatRequest:
+      type: object
+      required:
+        - question
+      properties:
+        question:
+          type: string
+          minLength: 1
+          maxLength: 2000
+          description: Pregunta del usuario sobre el sistema AQUORA
+          example: Como registro una lectura de contador?
+
+    ChatResponse:
+      type: object
+      required:
+        - answer
+      properties:
+        answer:
+          type: string
+          description: Respuesta del chatbot basada en el contexto recuperado
+          example: Para registrar una lectura, ingresa al modulo de lecturas...
+        sources:
+          type: array
+          description: Fragmentos o referencias documentales utilizados
+          items:
+            type: string
+
+    ErrorResponse:
+      type: object
+      required:
+        - status
+        - message
+      properties:
+        status:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: La pregunta no puede estar vacia
