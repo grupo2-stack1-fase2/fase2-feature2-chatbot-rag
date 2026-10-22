@@ -25,7 +25,7 @@ public class DocumentProcessingService {
 
         if (!Files.exists(path) || !Files.isRegularFile(path)) {
             throw new IOException(
-                "No se encontrÃ³ el documento: " +
+                "No se encontró el documento: " +
                 path.toAbsolutePath()
             );
         }
@@ -82,15 +82,10 @@ private List<String> splitIntoChunks(String text) {
 
         String chunk = text.substring(start, end).trim();
 
-        System.out.println(
-    "DEBUG: inicio=" + start +
-    ", fin=" + end +
-    ", longitud=" + chunk.length()
-);
 
         if (chunk.length() > CHUNK_SIZE) {
             throw new IllegalStateException(
-                "Se generÃ³ un fragmento superior a 1000 caracteres."
+                "Se generó un fragmento superior a 1000 caracteres."
             );
         }
 

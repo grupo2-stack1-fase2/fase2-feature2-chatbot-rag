@@ -26,14 +26,12 @@ public class EmbeddingService {
             .baseUrl(ollamaUrl)
             .build();
 }
-
     public List<Double> generateEmbedding(String text) {
         if (text == null || text.isBlank()) {
-            throw new IllegalArgumentException(
-                    "El texto no puede estar vacío."
-            );
-        }
-
+    throw new IllegalArgumentException(
+            "El texto no puede estar vacío."
+    );
+}
         Map<String, Object> request = Map.of(
                 "model", embeddingModel,
                 "input", text
@@ -50,10 +48,16 @@ public class EmbeddingService {
             JsonNode embedding = root.path("embeddings").path(0);
 
             if (!embedding.isArray() || embedding.isEmpty()) {
-                throw new IllegalStateException(
-                        "Ollama no devolvió un embedding válido."
-                );
-            }
+    throw new IllegalStateException(
+            "Ollama no devolvió un embedding válido."
+    );
+}
+if (embedding.size() != 768) {
+    throw new IllegalStateException(
+            "Se esperaba un embedding de 768 dimensiones, pero se recibieron "
+                    + embedding.size() + "."
+    );
+}
 
             List<Double> vector = new ArrayList<>();
 
