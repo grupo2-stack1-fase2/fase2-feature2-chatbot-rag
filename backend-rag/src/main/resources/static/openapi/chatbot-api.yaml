@@ -1,4 +1,3 @@
-
 openapi: 3.0.3
 
 info:
@@ -7,7 +6,7 @@ info:
   version: 1.0.0
 
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:8082
     description: Entorno local
 
 tags:
@@ -65,27 +64,51 @@ components:
     ChatResponse:
       type: object
       required:
+        - question
         - answer
+        - sources
       properties:
+        question:
+          type: string
+          description: Pregunta original del usuario
+          example: Como registro una lectura de contador?
         answer:
           type: string
           description: Respuesta del chatbot basada en el contexto recuperado
-          example: Para registrar una lectura, ingresa al modulo de lecturas...
+          example: Para registrar una lectura, sigue los pasos indicados en el manual de AQUORA.
         sources:
           type: array
-          description: Fragmentos o referencias documentales utilizados
+          description: Fragmentos documentales utilizados como contexto para generar la respuesta
           items:
-            type: string
+            $ref: '#/components/schemas/Source'
+
+    Source:
+      type: object
+      required:
+        - chunkIndex
+        - text
+        - score
+      properties:
+        chunkIndex:
+          type: integer
+          description: Indice del fragmento documental recuperado
+          example: 3
+        text:
+          type: string
+          description: Contenido del fragmento documental
+          example: El usuario puede consultar la informacion de su servicio de agua.
+        score:
+          type: number
+          format: double
+          description: Puntuacion de similitud del fragmento recuperado
+          example: 0.85
 
     ErrorResponse:
       type: object
       required:
-        - status
-        - message
+        - mensaje
       properties:
-        status:
-          type: integer
-          example: 400
-        message:
+        mensaje:
           type: string
-          example: La pregunta no puede estar vacia
+          description: Descripcion del error
+          example: La pregunta no puede estar vacia.

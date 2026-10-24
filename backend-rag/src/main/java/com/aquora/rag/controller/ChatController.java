@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/chat")
+@RequestMapping("/api/v1/chat")
 public class ChatController {
 
     private final ChatService chatService;
@@ -26,6 +26,11 @@ public class ChatController {
                 || request.question().isBlank()) {
             throw new IllegalArgumentException(
                     "La pregunta no puede estar vacía.");
+        }
+
+        if (request.question().length() > 2000) {
+            throw new IllegalArgumentException(
+                    "La pregunta no puede superar los 2000 caracteres.");
         }
 
         return chatService.ask(request.question());
