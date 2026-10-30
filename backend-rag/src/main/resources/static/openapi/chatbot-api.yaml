@@ -1,0 +1,114 @@
+openapi: 3.0.3
+
+info:
+  title: AQUORA Chatbot API
+  description: API del chatbot con recuperacion aumentada por generacion (RAG).
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8082
+    description: Entorno local
+
+tags:
+  - name: Chatbot
+    description: Consultas al asistente virtual de AQUORA
+
+paths:
+  /api/v1/chat:
+    post:
+      tags:
+        - Chatbot
+      operationId: sendChatMessage
+      summary: Envia una pregunta al chatbot
+      description: Recibe una pregunta y devuelve una respuesta fundamentada en la documentacion de AQUORA.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChatRequest'
+      responses:
+        '200':
+          description: Respuesta generada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatResponse'
+        '400':
+          description: La pregunta es invalida
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: No fue posible procesar la consulta
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    ChatRequest:
+      type: object
+      required:
+        - question
+      properties:
+        question:
+          type: string
+          minLength: 1
+          maxLength: 2000
+          description: Pregunta del usuario sobre el sistema AQUORA
+          example: Como registro una lectura de contador?
+
+    ChatResponse:
+      type: object
+      required:
+        - question
+        - answer
+        - sources
+      properties:
+        question:
+          type: string
+          description: Pregunta original del usuario
+          example: Como registro una lectura de contador?
+        answer:
+          type: string
+          description: Respuesta del chatbot basada en el contexto recuperado
+          example: Para registrar una lectura, sigue los pasos indicados en el manual de AQUORA.
+        sources:
+          type: array
+          description: Fragmentos documentales utilizados como contexto para generar la respuesta
+          items:
+            $ref: '#/components/schemas/Source'
+
+    Source:
+      type: object
+      required:
+        - chunkIndex
+        - text
+        - score
+      properties:
+        chunkIndex:
+          type: integer
+          description: Indice del fragmento documental recuperado
+          example: 3
+        text:
+          type: string
+          description: Contenido del fragmento documental
+          example: El usuario puede consultar la informacion de su servicio de agua.
+        score:
+          type: number
+          format: double
+          description: Puntuacion de similitud del fragmento recuperado
+          example: 0.85
+
+    ErrorResponse:
+      type: object
+      required:
+        - mensaje
+      properties:
+        mensaje:
+          type: string
+          description: Descripcion del error
+          example: La pregunta no puede estar vacia.

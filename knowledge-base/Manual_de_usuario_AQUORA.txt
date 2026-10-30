@@ -1,0 +1,107 @@
+1. Introducción
+AQUORA es el sistema desarrollado para administrar el servicio de agua potable de la municipalidad: registro de
+clientes y contadores, definición de tarifas, captura de lecturas mensuales, registro de pagos y generación de recibos.
+Este manual explica, paso a paso, cómo utilizar cada una de sus secciones.
+Objetivo de este manual
+Este documento está dirigido al personal que operará el sistema día a día:
+administradores, secretaria y lectores de campo. El objetivo es que cualquier
+persona del equipo pueda usar AQUORA sin necesidad de conocimientos técnicos
+previos, siguiendo los pasos descritos en cada sección.
+Requisitos para usar el sistema - Una computadora con acceso a la red donde está instalado el servidor. - Un navegador web actualizado (Google Chrome, Microsoft Edge o Firefox). - Un usuario y contraseña asignados por el administrador del sistema.
+2. Roles de usuario
+El sistema controla el acceso mediante tres roles. Cada usuario inicia sesión con su propia cuenta y solo ve las
+opciones correspondientes a su rol.
+Rol
+Puede hacer
+Administrador
+Acceso completo: clientes,
+contadores, tarifas, lecturas, pagos,
+estado de cuenta y panel principal.
+No puede hacer ---------
+Secretaria
+Registrar lecturas, registrar pagos,
+consultar clientes y estado de
+cuenta.
+Gestionar tarifas.
+Lector
+Registrar lecturas de campo.
+Gestionar tarifas, pagos, clientes ni
+contadores.
+Cada usuario inicia sesión con su propio correo y contraseña, asignados previamente por el Administrador. El menú
+lateral se ajusta automáticamente según el rol: por ejemplo, un usuario con rol Lector solo verá la opción
+"Registrar lectura", mientras que el Administrador ve todas las secciones disponibles.
+3. Acceso al sistema
+Para ingresar al sistema, abre la dirección del sitio en tu navegador y llega a la pantalla de inicio de sesión.
+1. Escribe tu correo electrónico registrado.
+2. Escribe tu contraseña.
+3. Presiona el botón "Iniciar sesión".
+4. Si los datos son correctos, el sistema te llevará al Panel principal correspondiente a tu rol.
+Si el correo o la contraseña son incorrectos, el sistema mostrará un mensaje de error genérico sin indicar cuál de los
+dos datos falló, por seguridad.
+4. Panel principal
+Al iniciar sesión, verás el Panel principal con un resumen general del sistema: clientes activos, contadores activos,
+sectores cubiertos y lecturas sin pagar. Desde el menú lateral izquierdo puedes navegar a las demás secciones
+disponibles para tu rol.
+5. Gestión de clientes
+En esta sección se administran los datos de las personas registradas como clientes del servicio de agua.
+5.1 Ver listado de clientes
+Da clic en "Clientes" en el menú lateral para ver el listado completo.
+5.2 Registrar un cliente nuevo
+1. Da clic en el botón "Nuevo cliente".
+2. Completa el nombre y la información solicitada.
+3. Guarda los cambios.
+6. Gestión de contadores
+Cada cliente puede tener uno o varios contadores de agua asociados, cada uno con su propia dirección de servicio y
+sector.
+7. Gestión de tarifas (solo Administrador)
+Las tarifas definen el precio por metro cúbico (m³) de consumo. Solo puede existir una tarifa vigente a la vez; al
+crear una nueva, la anterior se cierra automáticamente.
+7.1 Crear una tarifa nueva
+1. Da clic en "+ Nueva tarifa".
+2. Escribe el monto por unidad (precio por m³).
+3. Escribe la fecha "Vigente desde".
+4. Deja "Vigente hasta" vacío si la tarifa seguirá activa indefinidamente.
+5. Guarda la tarifa.
+El sistema rechazará la tarifa si su periodo se solapa con el de una tarifa ya existente, mostrando un mensaje de error
+explicativo.
+8. Registrar lectura
+Cada mes se registra la lectura del contador de cada cliente. El sistema calcula automáticamente el consumo (lectura
+actual menos lectura anterior) y el monto a pagar, según la tarifa vigente.
+1. Da clic en "Registrar lectura" en el menú lateral.
+2. Selecciona el contador correspondiente.
+3. Escribe la lectura actual del contador.
+4. Guarda la lectura.
+9. Registrar pago
+Una vez registrada una lectura, se puede registrar el pago correspondiente.
+1. Da clic en "Registrar pago" en el menú lateral, o en el botón correspondiente desde el listado de lecturas.
+2. Verifica el monto a pagar (calculado automáticamente).
+3. Selecciona la fecha de pago y el método (efectivo, depósito o transferencia).
+4. Si el método es depósito o transferencia, escribe el número de boleta (obligatorio en estos casos).
+5. Guarda el pago.
+10. Recibo de pago
+Al registrar una lectura, el sistema genera automáticamente un recibo con formato de tique, que incluye los datos del
+cliente, el contador, el periodo, el detalle de lecturas y consumo, la tarifa aplicada y el total a pagar. El recibo se
+puede imprimir directamente desde el navegador con el botón "Imprimir".
+11. Estado de cuenta
+Esta sección permite consultar, por cliente, el historial de lecturas y pagos, y si tiene saldos pendientes.
+12. Cerrar sesión
+Para salir del sistema de forma segura, da clic en el botón "Cerrar sesión" ubicado en la parte inferior del menú
+lateral. Esto finaliza la sesión y no permite regresar a las pantallas del sistema usando el botón "atrás" del navegador.
+13. Preguntas frecuentes
+¿Qué hago si olvidé mi contraseña?
+Comunícate con el Administrador del sistema para que restablezca tu
+contraseña; por seguridad, los usuarios no pueden cambiarla por sí mismos
+desde esta versión del sistema.
+¿Puedo modificar una lectura después de guardarla?
+No. Si te equivocaste al registrar una lectura, comunícalo al Administrador
+para que revise el caso directamente en la base de datos.
+¿Puedo volver a ver o imprimir un recibo ya generado?
+Sí. Los recibos quedan guardados en el sistema y pueden consultarse e
+imprimirse las veces que sea necesario desde la sección donde se generó
+la lectura correspondiente.
+¿Qué pasa si intento crear una tarifa que se cruza con una ya existente?
+El sistema la rechaza automáticamente y muestra un mensaje indicando que
+el periodo se solapa con una tarifa ya registrada.
+Gracias por utilizar AQUORA. Ante cualquier duda adicional que no esté cubierta en este manual,
+comunícate con el equipo de desarrollo del
+Grupo 2 - Stack 1.

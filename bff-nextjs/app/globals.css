@@ -1,0 +1,264 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f3f7fb;
+  --foreground: #172b4d;
+  --primary: #087ea4;
+  --primary-dark: #066582;
+  --surface: #ffffff;
+  --border: #dce6ef;
+  --muted: #64748b;
+  --assistant-message: #edf6fa;
+  --user-message: #087ea4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.chat-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 7%;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand-mark {
+  display: flex;
+  width: 46px;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: var(--primary);
+  color: white;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.brand-name {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.brand-description {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.chat-container {
+  width: min(900px, 100%);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: 32px 24px 24px;
+}
+
+.chat-intro {
+  margin-bottom: 24px;
+}
+
+.chat-intro h2 {
+  margin: 0 0 8px;
+  font-size: clamp(23px, 4vw, 30px);
+}
+
+.chat-intro p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.chat-messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 8px 0 24px;
+}
+
+.message {
+  max-width: 85%;
+  padding: 15px 18px;
+  border-radius: 16px;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.message-assistant {
+  align-self: flex-start;
+  background: var(--assistant-message);
+  border: 1px solid #d7eaf2;
+  border-bottom-left-radius: 4px;
+}
+
+.message-user {
+  align-self: flex-end;
+  background: var(--user-message);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.message-role {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
+.message-sources {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.message-sources ul {
+  margin: 6px 0 0;
+  padding-left: 20px;
+}
+
+.chat-composer {
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgb(23 43 77 / 5%);
+}
+
+.chat-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.chat-input {
+  width: 100%;
+  min-height: 48px;
+  max-height: 160px;
+  resize: vertical;
+  padding: 13px 14px;
+  color: var(--foreground);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+}
+
+.chat-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgb(8 126 164 / 12%);
+}
+
+.chat-send {
+  min-height: 48px;
+  padding: 0 22px;
+  color: white;
+  background: var(--primary);
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  transition: background 0.2s ease;
+}
+
+.chat-send:hover:not(:disabled) {
+  background: var(--primary-dark);
+}
+
+.chat-help {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.chat-error {
+  margin: 0 0 12px;
+  padding: 12px;
+  color: #a32121;
+  background: #fff0f0;
+  border: 1px solid #f3caca;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.chat-footer {
+  padding: 18px;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .chat-header {
+    padding: 16px 20px;
+  }
+
+  .chat-container {
+    padding: 24px 14px 16px;
+  }
+
+  .message {
+    max-width: 94%;
+  }
+
+  .chat-composer {
+    padding: 10px;
+  }
+
+  .chat-form {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .chat-send {
+    width: 100%;
+  }
+}
