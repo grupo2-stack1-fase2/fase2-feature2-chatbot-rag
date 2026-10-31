@@ -179,11 +179,23 @@ Se realizaron consultas desde la interfaz para comprobar el flujo de pregunta, r
 
 Para repetir la prueba, inicia PostgreSQL, Ollama, el backend y la interfaz; después envía las preguntas desde la aplicación y verifica que se muestren las fuentes.
 
-## 8. Decisión técnica
+
+## 8. Evidencias de ejecución
+
+Se realizaron pruebas funcionales desde la interfaz web del chatbot
+para verificar la recuperación de información documental y la
+generación de respuestas con fuentes.
+
+Las capturas de las pruebas se encuentran disponibles en:
+
+[Ver evidencias de ejecución](Arquitectura%20y%20evidencias/Evidencia/)
+
+
+## 9. Decisión técnica
 
 Se eligió una arquitectura RAG en lugar de depender únicamente de una respuesta generada por el modelo. La recuperación de fragmentos del manual aporta contexto específico de AQUORA y permite mostrar fuentes junto con la respuesta. PostgreSQL con pgvector mantiene los fragmentos y embeddings en el mismo motor de base de datos, mientras que Ollama permite ejecutar los modelos localmente.
 
-## 9. Consideraciones
+## 10. Consideraciones
 
 - La calidad de las respuestas depende de la cobertura y claridad del manual procesado.
 - Las respuestas se basan en el contenido documental recuperado; no representan consultas a datos operativos en tiempo real.
